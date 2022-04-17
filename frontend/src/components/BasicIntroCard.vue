@@ -5,7 +5,7 @@
     </div>
     <div class="details" v-if="intro.details.length > 0">
       <div class="detail" v-for="(detail, index) in intro.details" :key="index">
-        <span>{{detail.type}}:</span><span>{{detail.value}}</span>
+        <span>{{detail.type}}: </span><span>{{detail.value}}</span>
       </div>
     </div>
   </div>
@@ -44,9 +44,9 @@
     box-sizing: border-box;
     color: #4e4376;
     height: 350px;
-    overflow: scroll;
+    overflow: hidden;
     text-align: left;
-    padding :5% 2% 0 0;
+    padding :3% 3% 0 0;
     padding-left: 30px;
     padding-right: 30px;
   }
@@ -56,9 +56,9 @@
     box-sizing: border-box;
     color: #4e4376;
     height: 350px;
-    overflow: scroll;
+    overflow: hidden;
     text-align: left;
-    padding :5% 2% 0 0;
+    padding :3% 3% 0 0;
     padding-left: 30px;
     padding-right: 30px;
     box-shadow: 8px 8px 14px 0 rgba(253, 253, 253, 0.5)

@@ -4,17 +4,23 @@
       <div class="from-content">
         <h1>注册账户</h1>
         <div class="from">
-<!--          <div class="from-list">-->
-<!--            <input id="email" type="text" v-model="email" placeholder="请输入注册邮箱" data-text="请输入格式正确邮箱。" autocomplete="off">-->
-<!--          </div>-->
+          <!--          <div class="from-list">-->
+          <!--            <input id="email" type="text" v-model="email" placeholder="请输入注册邮箱" data-text="请输入格式正确邮箱。" autocomplete="off">-->
+          <!--          </div>-->
           <div class="from-list">
-            <input id="username" type="text" v-model="username" placeholder="请输入用户名"  autocomplete="off">
+            <input id="username" type="text" v-model="username" placeholder="请输入用户名" autocomplete="off">
           </div>
           <div class="from-list">
-            <input id="password" type="password" v-model="password" placeholder="请输入登录密码" data-text="密码长度为6-20。" autocomplete="off">
+            <form>
+              <input id="password" type="password" v-model="password" placeholder="请输入登录密码" data-text="密码长度为6-20。"
+                     autocomplete="off">
+            </form>
           </div>
           <div class="from-list">
-            <input id="cofPassword" type="password" v-model="check_password" placeholder="请再次输入密码" data-text="两次密码输入不相同。" autocomplete="off">
+            <form>
+              <input id="cofPassword" type="password" v-model="check_password" placeholder="请再次输入密码"
+                     data-text="两次密码输入不相同。" autocomplete="off">
+            </form>
           </div>
 
           <div class="submit-btn">
@@ -31,19 +37,20 @@
 </template>
 
 <script>
-    import {postRegisterLogin} from "../utils/request"
+    import {postNormalRequest} from "../utils/request"
     import {Message} from "element-ui"
+
     export default {
         name: "register",
-        data(){
-            return{
+        data() {
+            return {
                 // email:"",
-                password:"",
-                username:"",
-                check_password:""
+                password: "",
+                username: "",
+                check_password: ""
             }
         },
-        methods:{
+        methods: {
             // checkEmail(){
             //     if(this.email==""){
             //         Message.error("邮箱不能为空");
@@ -59,13 +66,13 @@
             //     }
             //     return true;
             // },
-            checkPassword(){
-                if(this.password==""){
+            checkPassword() {
+                if (this.password == "") {
                     Message.error("密码不能为空");
                     // alert("密码不能为空")
                     return false;
                 }
-                if(this.password!=this.check_password){
+                if (this.password != this.check_password) {
                     Message.error("两次密码输入不同");
                     return false;
                 }
@@ -73,23 +80,23 @@
 
                 return true;
             },
-            checkUsername(){
-                if(this.username==""){
+            checkUsername() {
+                if (this.username == "") {
                     Message.error("用户名不能为空");
                     // alert("密码不能为空")
                     return false;
                 }
                 return true;
             },
-            register(){
-                if(this.checkPassword()&&this.checkUsername()) {
+            register() {
+                if (this.checkPassword() && this.checkUsername()) {
                     let user = {
 
                         name: this.username,
                         password: this.password
                     }
                     console.log(user)
-                    postRegisterLogin("/user/register",user).then(res=>{
+                    postNormalRequest("/user/register", user).then(res => {
                         console.log(res.data)
                         // if(res.data.UserInfo!=null&&res.data.UserInfo.id!=null){
                         //     this.userInfo = res.data.UserInfo;
@@ -103,7 +110,7 @@
                 }
 
             },
-            toLogin(){
+            toLogin() {
                 this.$router.push("/login")
             }
         }
@@ -119,13 +126,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url("../assets/mainpage/index.jpg");
+    background-image: url("../assets/mainpage/2.jpg");
     background-size: 100% 100%;
   }
+
   .frame {
     height: 440px;
     width: 400px;
-    background-color: rgba(255,255,255,0.3);
+    background-color: rgba(255, 255, 255, 0.3);
 
   }
 
@@ -144,7 +152,8 @@
   a {
     text-decoration: none;
   }
-  a:hover{
+
+  a:hover {
     cursor: pointer;
   }
 
@@ -154,33 +163,33 @@
     box-shadow: none !important;
     outline: 0 !important;
     /*border: 0.2px solid white;*/
-    background-color: rgba(255,255,255,0.3);
+    background-color: rgba(255, 255, 255, 0.3);
     -webkit-appearance: none;
 
   }
 
   input::-webkit-input-placeholder {
     /* WebKit browsers */
-    color: #e0e0e0;
-    opacity: 0.5;
+    color: #f3f3f3;
+    opacity: 0.6;
   }
 
   input:-moz-placeholder {
     /* Mozilla Firefox 4 to 18 */
-    color: #e0e0e0;
-    opacity: 0.5;
+    color: #f3f3f3;
+    opacity: 0.6;
   }
 
   input::-moz-placeholder {
     /* Mozilla Firefox 19+ */
-    color: #e0e0e0;
-    opacity: 0.5;
+    color: #f3f3f3;
+    opacity: 0.6;
   }
 
   input:-ms-input-placeholder {
     /* Internet Explorer 10+ */
-    color: #e0e0e0;
-    opacity: 0.5;
+    color: #f3f3f3;
+    opacity: 0.6;
   }
 
   .from-content {
@@ -216,7 +225,7 @@
 
   .from-content .from-list input {
 
-    border: 1px solid gray;
+    border: 1px solid #aeaeae;
     width: 100%;
     margin: 0;
     padding: 0 0 0 6px;
@@ -240,7 +249,7 @@
 
     font-family: Arial, 宋体;
     font-style: italic;
-    color: green;
+    color: rgb(20, 104, 109);
     border: 0;
     line-height: 40px;
     letter-spacing: 6px;
@@ -255,7 +264,7 @@
 
 
   .from-content .from-list input:focus {
-    border: 1px solid #aeaeae;
+    border: 1px solid gray;
   }
 
   .from-content .from-list input::-webkit-input-placeholder {
@@ -289,11 +298,11 @@
   }
 
   .from-content .tip span.iconfont:hover {
-    color: #6dd070;
+    color: rgb(20, 104, 109);
   }
 
   .from-content .tip a {
-    color: #6dd070;
+    color: rgb(20, 104, 109);
     vertical-align: middle;
   }
 
@@ -318,7 +327,7 @@
 
   .from-content .error-message {
     font-size: 12px;
-    color: #6dd070;
+    color: rgb(20, 104, 109);
     text-align: center;
     margin-top: 16px;
     opacity: 0;
@@ -332,7 +341,7 @@
   }
 
   .from-content .submit-btn button {
-    background-color: rgba(109, 208, 112, 0.8);
+    background-color: rgb(20, 104, 109);
     color: #FFF;
     font-size: 16px;
     height: 44px;
@@ -342,7 +351,7 @@
   }
 
   .from-content .submit-btn button:hover {
-    background-color: #6dd070;
+    background-color: rgb(22, 118, 123);
     cursor: pointer;
   }
 

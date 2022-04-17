@@ -15,11 +15,14 @@ import ConferenceProfile from "@/views/conferenceProfile"
 import FieldProfile from "@/views/fieldProfile"
 import Login from "@/views/login"
 import Register from "@/views/register"
+import Collection from "@/views/Collection"
 
 import Trend from "@/views/trend"
 
 
 import {getRequest} from "../utils/request"
+import Rank from "../components/Rank";
+import Recommend from "../views/Recommend";
 
 Vue.use(Router)
 
@@ -38,7 +41,7 @@ const router= new Router({
   routes: [
     {
       path: '/',
-      redirect: '/mainpage'
+      redirect: '/login'
     },
     {
       path: '/login',
@@ -54,6 +57,11 @@ const router= new Router({
       path: '/mainpage',
       name: "MainPage",
       component: MainPage,
+    },
+    {
+      path: '/rank',
+      name: "Rank",
+      component: Rank,
     },
     {
       path: '/result',
@@ -99,7 +107,18 @@ const router= new Router({
       path: "/trend",
       name: "Trend",
       component: Trend
+    },
+    {
+      path: "/collection",
+      name: "collection",
+      component: Collection
+    },
+    {
+      path: "/recommend",
+      name: "recommend",
+      component: Recommend
     }
+
   ],
 });
 

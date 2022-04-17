@@ -19,8 +19,7 @@ export const getTrendInfo = (graphInfos, id) => {
               });
           }
         })
-      }
-      else {
+      } else {
         graphInfos[0].chartData.rows = null;
       }
     });
@@ -37,8 +36,7 @@ export const getTrendInfo = (graphInfos, id) => {
               });
           }
         })
-      }
-      else {
+      } else {
         graphInfos[1].chartData.rows = null;
       }
     });
@@ -55,8 +53,7 @@ export const getTrendInfo = (graphInfos, id) => {
               });
           }
         })
-      }
-      else {
+      } else {
         graphInfos[2].chartData.rows = null;
       }
     });
@@ -73,8 +70,7 @@ export const getTrendInfo = (graphInfos, id) => {
               });
           }
         })
-      }
-      else {
+      } else {
         graphInfos[3].chartData.rows = null;
       }
     });
@@ -91,8 +87,7 @@ export const getTrendInfo = (graphInfos, id) => {
               });
           }
         })
-      }
-      else {
+      } else {
         graphInfos[4].chartData.rows = null;
       }
     });
@@ -131,38 +126,33 @@ export const isNewData = (recorderYears, year) => {
   return false;
 };
 
-export const getPieChartData = (data, id) => {
-  getRequest("/api/field/distribution?id=" + id).then(res => {
-    if (res.status === 200) {
-      var total = 0;
-      res.data.forEach(item => {
-        total += item.count;
-        data.rows.push({
-          Fields: item.fieldName,
-          Proportion: item.count,
-        });
-      });
-      trimPieChartData(data.rows);
+export const getPieChartData = (originData, data) => {
 
-      if (data.rows.length > 20) {
-        var trimedData = [];
-        for (var i = 0; i < 19; i++) {
-          trimedData.push(data.rows[i]);
-          total -= data.rows[i].Proportion;
-        }
-
-        trimedData.push({
-          Fields: "Others",
-          Proportion: total,
-        });
-        data.rows = trimedData;
-      }
-    }
-    else {
-      data = null;
-    }
+  var total = 0;
+  originData.forEach(item => {
+    total += item.count;
+    data.rows.push({
+      Fields: item.name,
+      Proportion: item.count,
+    });
   });
+  trimPieChartData(data.rows);
+
+  if (data.rows.length > 7) {
+    var trimedData = [];
+    for (var i = 0; i < 7; i++) {
+      trimedData.push(data.rows[i]);
+      total -= data.rows[i].Proportion;
+    }
+
+    trimedData.push({
+      Fields: "Others",
+      Proportion: total,
+    });
+    data.rows = trimedData;
+  }
 };
+
 
 export const trimPieChartData = (data) => {
   data.sort(function (a, b) {

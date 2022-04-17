@@ -9,7 +9,9 @@
 
           </div>
           <div class="from-list">
-            <input type="password" id="password" v-model="password" placeholder="密码" data-text="密码长度为6-20。">
+            <form>
+            <input type="password" id="password" autocomplete="off" v-model="password" placeholder="密码" data-text="密码长度为6-20。">
+            </form>
           </div>
 
           <div class="from-list validation">
@@ -33,9 +35,9 @@
 </template>
 
 <script>
-    import {postRegisterLogin} from "../utils/request"
+    import {getRequest, postNormalRequest} from "../utils/request"
     import {Message} from "element-ui"
-    import {setToken} from "../utils/auth";
+    import {setToken,getToken} from "../utils/auth";
 
     export default {
         name: "Login",
@@ -113,12 +115,18 @@
                         name: this.username,
                         password: this.password
                     }
-                    postRegisterLogin("/user/login",user).then(res=>{
-                        console.log(res.data.message)
+                    postNormalRequest("/user/login",user).then(res=>{
+
                         if(res.data.success){
-                            setToken(res.data.message)
                             this.$router.push("/mainpage");
                             Message.success("登录成功");
+                            setToken('PAPER-BACKEND',res.data.message);
+                            getRequest("/user/uid?"+"username="+this.username).then(res=>{
+
+                                setToken('UID',res.data)
+
+                            })
+
                         }else{
                             Message.error("登录错误,请检查邮箱和密码");
                         }
@@ -140,7 +148,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url("../assets/mainpage/index.jpg");
+    background-image: url("../assets/mainpage/2.jpg");
     background-size: 100% 100%;
   }
 
@@ -189,26 +197,26 @@
 
   input::-webkit-input-placeholder {
     /* WebKit browsers */
-    color: #e0e0e0;
-    opacity: 0.5;
+    color: #f3f3f3;
+    opacity: 0.6;
   }
 
   input:-moz-placeholder {
     /* Mozilla Firefox 4 to 18 */
-    color: #e0e0e0;
-    opacity: 0.5;
+    color: #f3f3f3;
+    opacity: 0.6;
   }
 
   input::-moz-placeholder {
     /* Mozilla Firefox 19+ */
-    color: #e0e0e0;
-    opacity: 0.5;
+    color: #f3f3f3;
+    opacity: 0.6;
   }
 
   input:-ms-input-placeholder {
     /* Internet Explorer 10+ */
-    color: #e0e0e0;
-    opacity: 0.5;
+    color: #f3f3f3;
+    opacity: 0.6;
   }
 
   .from-content {
@@ -244,12 +252,12 @@
 
   .from-content .from-list input {
 
-    border: 1px solid gray;
+    /*border: 0.1px solid gray;*/
     width: 100%;
     margin: 0;
     padding: 0 0 0 6px;
     height: 40px;
-    /*border: 1px solid #e2e2e2;*/
+    border: 1px solid #aeaeae;
     box-sizing: border-box;
     border-radius: 4px;
     font-size: 16px;
@@ -268,7 +276,7 @@
 
     font-family: Arial, 宋体;
     font-style: italic;
-    color: green;
+    color: rgb(20, 104, 109);
     border: 0;
     line-height: 40px;
     letter-spacing: 6px;
@@ -283,7 +291,7 @@
 
 
   .from-content .from-list input:focus {
-    border: 1px solid #aeaeae;
+    border: 1px solid gray;
   }
 
   .from-content .from-list input::-webkit-input-placeholder {
@@ -317,11 +325,11 @@
   }
 
   .from-content .tip span.iconfont:hover {
-    color: #6dd070;
+    color: rgb(20, 104, 109);
   }
 
   .from-content .tip a {
-    color: #6dd070;
+    color: rgb(20, 104, 109);
     vertical-align: middle;
   }
 
@@ -331,7 +339,7 @@
   }
 
   .from-content .tip .tip-right:hover {
-    color: #6dd070;
+    color: rgb(20, 104, 109);
   }
 
   .from-content .tip.signup-tip,
@@ -346,7 +354,7 @@
 
   .from-content .error-message {
     font-size: 12px;
-    color: #6dd070;
+    color: rgb(20, 104, 109);
     text-align: center;
     margin-top: 16px;
     opacity: 0;
@@ -360,17 +368,18 @@
   }
 
   .from-content .submit-btn button {
-    background-color: rgba(109, 208, 112, 0.8);
+    background-color: rgb(20, 104, 109);
     color: #FFF;
     font-size: 16px;
     height: 44px;
-    width: 80%;
+    line-height: 44px;
+    width: 60%;
     display: block;
     border-radius: 22px;
   }
 
   .from-content .submit-btn button:hover {
-    background-color: #6dd070;
+    background-color: rgb(22, 118, 123);
     cursor: pointer;
   }
 

@@ -28,8 +28,7 @@ function checkCode(response) {
   }
   return response;
 }
-export const postRegisterLogin = (url, params) => {
-  console.log(params)
+export const postNormalRequest = (url, params) => {
   return axios({
     method: 'post',
     url: `${url}`,
@@ -54,7 +53,7 @@ export const postRequest = (url, params) => {
     }],
     headers: {
       'Content-Type': 'application/json;charset-UTF-8',
-      'paper_backend':getToken()
+      'paper_backend':getToken('PAPER-BACKEND')
     }
   });
 }
@@ -79,7 +78,7 @@ export const putRequest = (url, params) => {
     headers: {
       'Content-Type': 'application/json;charset-UTF-8',
       // 'Content-Type': 'application/x-www-form-urlencoded',
-      'paper_backend':paper_backend
+      'paper_backend': getToken('PAPER-BACKEND')
     }
   });
 }
@@ -89,12 +88,12 @@ export const deleteRequest = (url) => {
     url: `${url}`,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'paper_backend':getToken()
+      'paper_backend':getToken('PAPER-BACKEND')
     },
   });
 }
 export const getRequest = (url,params) => {
-  console.log(getToken())
+
   return axios({
     method: 'get',
     data: params,
@@ -108,8 +107,21 @@ export const getRequest = (url,params) => {
     headers: {
       'Content-Type': 'text/plain',
 
-      'paper_backend':getToken()
+      'paper_backend':getToken('PAPER-BACKEND')
       // "Access-Control-Allow-Credentials": true
+    },
+    url: `${url}`
+  });
+}
+export const getNormalRequest = (url,params) => {
+
+  return axios({
+    method: 'get',
+    params: params,
+    headers: {
+      'Content-Type': 'application/json;charset-UTF-8',
+      'paper_backend':getToken('PAPER-BACKEND')
+
     },
     url: `${url}`
   });

@@ -3,8 +3,8 @@ import 'element-ui/lib/theme-chalk/index.css';
 import Vue from 'vue';
 import App from './App';
 import router from './router';
-import './permission';
-
+// import './permission';
+import "./utils/track"
 
 import VCharts from 'v-charts';
 

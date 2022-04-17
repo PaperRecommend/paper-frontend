@@ -1,10 +1,10 @@
-<template>
+ <template>
 	<div class="sort-list">
-		<el-table :data="table_data" style="width: 100%;" 
+		<el-table :data="table_data" style="width: 100%;"
 				  :default-sort = "{prop: 'paper_count', order: 'descending'}"
 				  @row-click="clickItem">
 			<el-table-column prop="name" label="name" :show-overflow-tooltip="true"></el-table-column>
-			<el-table-column v-for="(item, index) in list_title" 
+			<el-table-column v-for="(item, index) in list_title"
 											 :key="index"
 											 :prop="item"
 											 :label="item">
@@ -36,7 +36,7 @@ export default {
 			this.$emit("getProfile", {id: row.id});
 		}
 	}
-	
+
 }
 </script>
 
@@ -63,8 +63,13 @@ export default {
 	background: transparent;
 }
 
-.sort-list > .el-table tbody tr:hover>td {
-	background: rgba(255, 255, 255, 0.3);
+/*.el-table tbody tr:hover > td {*/
+/*	background-color: rgba(0, 0, 0, 0.0);*/
+/*}*/
+.el-table--enable-row-hover .el-table__body tr:hover>td{
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  cursor: pointer;
+  /*background-color: rgba(0, 0, 0, 0.1);*/
 }
 .sort-list > .el-table thead {
 	color: #ffffff;

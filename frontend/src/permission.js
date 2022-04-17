@@ -9,7 +9,7 @@ router.beforeEach(async(to, from, next) => {
   // NProgress.start()
   // determine whether the user has logged in
   // removeToken()
-  const hasToken = getToken()
+  const hasToken = getToken("PAPER-BACKEND")
   if (hasToken) {
 
 
@@ -17,7 +17,7 @@ router.beforeEach(async(to, from, next) => {
       // if is logged in, redirect to the home page
       next({path: '/mainpage'})
       console.log("跳转到mainpage")
-      NProgress.done()
+      // NProgress.done()
     } else {
       next()
       // NProgress.done()

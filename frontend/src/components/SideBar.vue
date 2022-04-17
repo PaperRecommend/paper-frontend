@@ -5,7 +5,9 @@
       <!--<search @paperSearch="searchVal"></search>-->
     <!--</div>-->
     <div class="date-pick">
-      <div class="indicator">Year pick</div>
+      <span class="indicator">Year </span>
+<!--      <div class="indicator">Year pick</div>-->
+
       <div class="year-pick start-year">
         <el-date-picker
           v-model="startYear"
@@ -13,6 +15,7 @@
           placeholder="Start"
           @change="checkYear($event)">
         </el-date-picker>
+
       </div>
       <div class="year-pick end-year">
         <el-date-picker
@@ -118,8 +121,8 @@
           conferenceSummaryCheck: Array(this.conferenceSummary.length).fill(false),
 
 
-          startYear: "2013",
-          endYear: "2020",
+          startYear: "",
+          endYear: "",
           activeNames: [],
 
           searchWithinQuery: {
@@ -258,9 +261,10 @@
 
 <style>
   .indicator{
-    color: azure;
-    display: block;
-    text-align: left;
+    color: #efefef;
+    font-size: 14px;
+
+
   }
 
   .search-within {
@@ -268,11 +272,19 @@
 }
 
   .date-pick{
-    margin: 0 3% 7% 3%;
+    /*margin: 0 3% 7% 3%;*/
+    padding-left: 0px;
+    text-align: left;
+    line-height: 50px;
+    height: 50px;
 }
 
   .year-pick{
     display: inline-block;
+    margin-left: 25px;
+  }
+  .start-year{
+    margin-left: 60px;
   }
 
   .el-date-editor input

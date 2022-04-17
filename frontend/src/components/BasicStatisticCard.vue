@@ -34,18 +34,18 @@
 </script>
 
 <style scoped>
-  ::-webkit-scrollbar {
-    width: 12px;
-  }
+  /*::-webkit-scrollbar {*/
+  /*  width: 0;*/
+  /*}*/
 
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
+  /*::-webkit-scrollbar-track {*/
+  /*  background: transparent;*/
+  /*}*/
 
-  ::-webkit-scrollbar-thumb {
-    border-radius:10px;
-    background: #b4bccc;
-  }
+  /*::-webkit-scrollbar-thumb {*/
+  /*  border-radius:10px;*/
+  /*  background: #b4bccc;*/
+  /*}*/
 
   .normal-card{
     background-color: azure;
@@ -54,9 +54,12 @@
     border-radius: 4px;
     color: #4e4376;
     height: 350px;
-    overflow: scroll;
-    padding :5% 2% 0 0;
+    overflow: hidden;
+    padding :3% 3% 0 0;
     text-align: left;
+    margin-top: -11px;
+    /*display: flex;*/
+
   }
   .shadow-card{
     background-color: azure;
@@ -65,10 +68,11 @@
     border-radius: 4px;
     color: #4e4376;
     height: 350px;
-    overflow: scroll;
+    overflow: hidden;
     box-shadow: 8px 8px 14px 0 rgba(253, 253, 253, 0.5);
-    padding :5% 2% 0 0;
+    padding :3% 3% 0 0;
     text-align: left;
+    margin-top: -11px;
     /* overflow: auto; */
   }
 
@@ -76,6 +80,8 @@
   .item {
     /*border: solid pink;*/
     padding: 4% 5% ;
+    width: 100%;
+    /*height: 20%;*/
   }
 
   .item-icon {
@@ -95,6 +101,7 @@
     font-style: italic;
     font-weight: bold;
     font-size: x-large;
+
   }
 
 </style>

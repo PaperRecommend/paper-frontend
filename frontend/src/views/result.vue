@@ -1,6 +1,7 @@
 <template>
     <el-container class="main">
       <el-header id="header" style="height: 35vh;min-height: 270px; padding:0;">
+        <HeaderBar></HeaderBar>
         <div id="overlay">
           <div id="o-content">
             <h1 class="title" @click="gotoMainpage">
@@ -32,6 +33,7 @@
             <div class="result-card" v-loading="loading">
               <essay-search-result-card v-for="(result, index) in search_result"
                                         v-bind:key="index"
+                                        v-bind:id="result.id"
                                         v-bind:title="result.title"
                                         v-bind:authors="result.authors"
                                         v-bind:conference="result.venue"
@@ -40,6 +42,7 @@
                                         v-bind:fields="result.fos"
                                         v-bind:publisher="result.publisher"
                                         v-bind:essayLink="result.doi"
+                                        v-bind:isCollect="result.isCollect"
                                         v-bind:keyword="search_query"
                                         v-bind:advanced_keywords="advanced_keywords">
               </essay-search-result-card>
@@ -65,10 +68,13 @@
   import pagination from "../components/Pagination"
   import {getRequest} from "../utils/request.js"
   import bus from "../utils/bus"
+  import HeaderBar from "../components/HeaderBar";
+
 
 export default {
   name: 'SearchRes',
   components: {
+      HeaderBar,
     'essay-search-result-card': essaySearchResultCard,
     'side-bar': sideBar,
     'search': search,
@@ -218,8 +224,11 @@ export default {
 
       getRequest("/api/query/paper/list?query=" + this.search_query + "&returnFacets=" + this.search_type)
         .then(res=>{
-          console.log("/api/query/paper/list?query=" + this.search_query + "&returnFacets=" + this.search_type)
             console.log(res.data);
+            let collection=new Set(JSON.parse(localStorage.getItem("Collection")))
+            res.data.forEach(item=>{
+                item["isCollect"]=collection.has(item.id)
+            })
           this.search_result = res.data;
           // this.search_page_number = res.data.itemCnt;
 
@@ -324,13 +333,14 @@ export default {
   font-size: 50px;
   margin: 0 0 8px 0;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
 #header{
   position: relative;
+  background-image: url("../assets/mainpage/2.jpg");
+  background-size: cover;
 
-  background-image: url("../assets/mainpage/index.jpg");
-  background-size: 100% auto;
 }
 #overlay{
   position: absolute;
