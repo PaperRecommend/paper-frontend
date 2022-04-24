@@ -72,16 +72,16 @@ module.exports = {
 
     proxyTable: {
       '/query/**': {
-        target: 'http://localhost:8081',  // 接口域名
+        target: 'http://172.29.7.234:8081',  // 接口域名
         changeOrigin: true,  //是否跨域
       },
       '/user/**': {
-        target: 'http://localhost:8081',  // 接口域名
+        target: 'http://172.29.7.234:8081',  // 接口域名
         changeOrigin: true,  //是否跨域
         secure: false,
       },
       '/api/**': {
-        target: 'http://localhost:8081',  // 接口域名
+        target: 'http://172.29.7.234:8081',  // 接口域名
         changeOrigin: true,  //是否跨域
       },
     },

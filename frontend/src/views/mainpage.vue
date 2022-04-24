@@ -6,10 +6,10 @@
       <div class="overlay">
         <div class="o-content">
           <h1 class="title">
-            OASIS
+            PSARS
           </h1>
           <div id="tips">
-            —— ——CONNECTING THE KNOWLEDGE—— ——
+            —— ——GET THE PAPER YOU WANT—— ——
           </div>
           <div class="bar">
             <SearchBar @paperSearch="search"></SearchBar>
@@ -18,6 +18,7 @@
       </div>
     </div>
     <Rank></Rank>
+<!--    <RecommendPage></RecommendPage>-->
   </div>
     <!--
         top榜
@@ -114,10 +115,12 @@
     import {getRequest} from "../utils/request"
     import HeaderBar from "../components/HeaderBar";
     import {getToken} from "../utils/auth";
+    // import RecommendPage from "./RecommendPage";
 
     export default {
         name: 'MainPage',
         components: {
+            // RecommendPage,
             HeaderBar,
             SearchBar,
             'top-ranking-card': TopRankingCard,

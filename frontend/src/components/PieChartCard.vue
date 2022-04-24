@@ -11,7 +11,8 @@
       <ve-pie :data="chartData"
               :legend-visible="false"
               :settings="chartSettings"
-              :extend="chartExtend"></ve-pie>
+              :extend="chartExtend"
+      ></ve-pie>
     </div>
   </div>
 </template>
@@ -107,6 +108,9 @@
   .graph{
     width:95%;
     height: 90%;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
   }
   .graph-error{
     padding-top: 100px;

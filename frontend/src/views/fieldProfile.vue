@@ -129,9 +129,10 @@
 
         mounted() {
             this.id = this.$route.query.id;
+            console.log(this.id);
             this.getBasicInfo();
             // this.getTopRankingInfo();
-            getTrendInfo(this.graphInfos, this.id);
+            // getTrendInfo(this.graphInfos, this.id);
             // this.getWordCloud()
         },
 
@@ -220,6 +221,7 @@
                         "Papers": parseInt(data[year])
                     })
                 }
+                console.log(this.graphInfos.chartData.rows)
                 // console.log(this.graphInfos.chartData);
 
             }

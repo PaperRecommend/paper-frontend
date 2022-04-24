@@ -3,11 +3,11 @@
 		<el-table :data="table_data" style="width: 100%;"
 				  :default-sort = "{prop: 'paper_count', order: 'descending'}"
 				  @row-click="clickItem">
-			<el-table-column prop="name" label="name" :show-overflow-tooltip="true"></el-table-column>
+			<el-table-column prop="name" label="Name" :show-overflow-tooltip="true"></el-table-column>
 			<el-table-column v-for="(item, index) in list_title"
 											 :key="index"
-											 :prop="item"
-											 :label="item">
+											 :prop="item[0]"
+											 :label="item[1]">
 			</el-table-column>
 		</el-table>
 	</div>

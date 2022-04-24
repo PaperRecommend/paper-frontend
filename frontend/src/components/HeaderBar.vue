@@ -8,20 +8,20 @@
     <div class="paper-statistic">
       <el-dropdown trigger="click" @command="enterDetail">
         <div class="dropdown-top">
-          <span>论文统计</span>
+          <span>Analysis</span>
           <i class="el-icon-caret-bottom" style="margin-left: 3px;color: white;"></i>
         </div>
 
-        <el-dropdown-menu slot="dropdown" style="margin-left: 20px;margin-top: -7px;">
-          <el-dropdown-item key="1" icon="el-icon-data-analysis" command="0">作者统计</el-dropdown-item>
-          <el-dropdown-item key="2" icon="el-icon-data-analysis" command="1">领域统计</el-dropdown-item>
-          <el-dropdown-item key="3" icon="el-icon-data-analysis" command="2">会议统计</el-dropdown-item>
+        <el-dropdown-menu slot="dropdown" style="margin-left: 0px;margin-top: -15px;">
+          <el-dropdown-item key="1" icon="el-icon-data-analysis" command="0">Author</el-dropdown-item>
+          <el-dropdown-item key="2" icon="el-icon-data-analysis" command="1">Field</el-dropdown-item>
+          <el-dropdown-item key="3" icon="el-icon-data-analysis" command="2">Conference</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
 
     <div class="paper-recommend">
-      <span @click="gotoRecommend()">论文推荐</span>
+      <span @click="gotoRecommend()">Recommendation</span>
     </div>
 
 
@@ -82,25 +82,26 @@
 <style scoped>
   .header-bar {
     position: absolute;
-    height: 50px;
-    margin-top: 20px;
-    margin-left: 30px;
+    height: 80px;
+
     z-index: 1000;
     display: flex;
+    align-items: center;
+
     font-family: "Microsoft YaHei UI";
 
   }
 
   .system-icon {
-    height: 50px;
+    height: 80px;
     width: 100px;
   }
 
   .system-icon i {
-    font-size: 40px;
+    font-size: 35px;
     font-weight: bold;
     color: white;
-    line-height: 50px;
+    line-height: 80px;
   }
   .system-icon i:hover{
     cursor: pointer;
@@ -108,8 +109,8 @@
 
   .paper-statistic {
 
-    line-height: 50px;
-    /*height: 50px;*/
+    line-height: 80px;
+    /*height: 80px;*/
     width: 100px;
 
   }
@@ -117,32 +118,35 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    line-height: 50px;
+    line-height: 80px;
     color: white;
   }
   .dropdown-top:hover{
     cursor: pointer;
+    text-decoration: underline;
   }
 
   .paper-recommend {
     color: white;
-    line-height: 50px;
-    height: 50px;
+    line-height: 80px;
+    height: 80px;
     width: 100px;
     font-size: 14px;
+    margin-left: 20px;
   }
   .paper-recommend span:hover{
     cursor: pointer;
+    text-decoration: underline;
   }
 
   #user-info-header {
     position: absolute;
-    height: 50px;
+    height: 80px;
     width: 100px;
 
     /*background-color: rgba(255,255,255,0);*/
     /*top: 20px;*/
-    top: 5px;
+    top: 20px;
     left: 90vw;
     z-index: 1000;
   }

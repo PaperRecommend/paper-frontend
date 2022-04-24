@@ -105,7 +105,13 @@
                         // }else{
                         //     Message.error("注册错误,请检查邮箱和密码");
                         // }
-                        this.$router.push("/login");
+                        if(res.data.success){
+                            Message.success("注册成功");
+                            this.$router.push("/login");
+                        }else {
+                            Message.error("注册失败,用户名重复");
+                        }
+
                     });
                 }
 

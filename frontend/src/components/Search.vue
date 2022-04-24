@@ -16,7 +16,7 @@
 <script>
 export default{
     name: "search-bar",
-    props: ["searchContent"],
+    props: ["searchContent","type"],
     data(){
         return{
             searchType:"all",
@@ -26,7 +26,10 @@ export default{
     watch: {
         "searchContent": function(val) {
             this.searchCon = val;
-        }
+        },
+        "type":function(val) {
+            this.searchType = val;
+        },
     },
     methods:{
          submit(){
@@ -89,7 +92,7 @@ export default{
       border: none;
   }
   .el-input-group__append, .el-input-group__prepend{
-      padding: 0, 4%;
+      padding: 0 4%;
   }
     .input-with-select .el-input__inner::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
         color: black;

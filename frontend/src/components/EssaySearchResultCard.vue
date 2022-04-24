@@ -15,25 +15,24 @@
     <div class="content">
       <div id="author"><span class="sub-title">Authors: </span>
         <template v-for="(author, index) in authors">
-        <span class="profile-entity"
+        <a class="profile-entity"
               v-html="brightenKeyword(author.name)"
-              @click="jumpToProfile('author', author.id)"></span>
+              @click="jumpToProfile('author', author.id)"></a>
           <span>; </span>
         </template>
       </div>
       <div><span class="sub-title">Conference: </span>
         <template>
-          <span class="profile-entity"
-                v-html="brightenKeyword(conference.raw)"
-                @click="jumpToProfile('conference', conference.id)"></span>
+          <span
+            v-html="brightenKeyword(conference.raw)"
+          ></span>
         </template>
       </div>
       <div><span class="sub-title">Year: </span>{{year}} | Conference Paper
       </div>
       <div><span class="sub-title">Publisher: </span>
         <template>
-           <span class="profile-entity"
-                 v-html="brightenKeyword(publisher)"></span>
+          <span v-html="brightenKeyword(publisher)"></span>
           <!--          <span class="profile-entity"-->
           <!--                v-html="brightenKeyword(affiliation.affiliationName)"-->
           <!--                @click="jumpToProfile('affiliation', affiliation.id)" ></span>-->
@@ -47,7 +46,7 @@
         <template v-for="(field, index) in fields">
           <span class="profile-entity"
                 v-html="brightenKeyword(field.name)"
-                @click="jumpToProfile('field', field.name)"></span>
+                @click="jumpToFieldProfile(field.name)"></span>
           <span>; </span>
         </template>
       </div>
@@ -59,7 +58,7 @@
 
 <script>
     import {jump2Profile} from "../utils/profileInfo";
-    import {postRequest} from "../utils/request";
+    import {getRequest, postRequest} from "../utils/request";
     import {getToken} from "../utils/auth";
     import {Message} from "element-ui"
 
@@ -100,13 +99,13 @@
 
             brightenKeyword(val) {
                 var result = [];
-                let keyword_list=[];
-                let advanced_keyword_list=[];
+                let keyword_list = [];
+                let advanced_keyword_list = [];
                 if (this.keyword != null) {
-                    keyword_list=this.keyword.split("%20");
+                    keyword_list = this.keyword.split("%20");
                 }
-                if(this.advanced_keywords!=null&&this.advanced_keywords!=[]){
-                    advanced_keyword_list=this.advanced_keywords
+                if (this.advanced_keywords != null && this.advanced_keywords != []) {
+                    advanced_keyword_list = this.advanced_keywords
                 }
                 result = this.brightenKeywordList(val, keyword_list);
                 result = this.brightenKeywordList(result, advanced_keyword_list);
@@ -129,33 +128,44 @@
             jumpToProfile(type, id) {
                 jump2Profile(this.$router, type, id);
             },
-            collect(){
+            jumpToFieldProfile(fieldName) {
+
+                getRequest("/api/field/id?name="+fieldName).then(res=>{
+                    console.log(res);
+                    if(res.status==200){
+                        console.log(res.data)
+                        this.$router.push({path: "/field-profile", query: {id: res.data}})
+
+                    }
+                })
+            },
+            collect() {
                 console.log(getToken("UID"));
-                this.isCollect=!this.isCollect;
-                let params={
+                this.isCollect = !this.isCollect;
+                let params = {
                     uid: parseInt(getToken("UID")),
                     paperId: this.id,
                     // paperTitle: this.title
                 }
                 console.log(params)
-                if(this.isCollect){
-                    postRequest("/user/collection?uid="+params.uid+"&paperId="+params.paperId).then(res=>{
-                        if(res.data.success){
+                if (this.isCollect) {
+                    postRequest("/user/collection?uid=" + params.uid + "&paperId=" + params.paperId).then(res => {
+                        if (res.data.success) {
                             Message.success("收藏成功")
 
-                        }else{
+                        } else {
                             Message.error("收藏失败")
-                            this.isCollect=!this.isCollect;
+                            this.isCollect = !this.isCollect;
                         }
                     })
-                }else {
-                    postRequest("/user/cancel-collection?uid="+params.uid+"&paperId="+params.paperId).then(res=>{
-                        if(res.data.success){
+                } else {
+                    postRequest("/user/cancel-collection?uid=" + params.uid + "&paperId=" + params.paperId).then(res => {
+                        if (res.data.success) {
                             Message.success("成功取消收藏")
 
-                        }else{
+                        } else {
                             Message.error("取消收藏收藏失败")
-                            this.isCollect=!this.isCollect;
+                            this.isCollect = !this.isCollect;
                         }
                     })
 
@@ -211,7 +221,7 @@
     color: #d7d7d7;
   }
 
-  .collect{
+  .collect {
     position: relative;
     /*float: right;*/
     /*margin-top: -90px;*/
@@ -220,16 +230,18 @@
     margin-left: 5px;
     margin-top: 2px;
   }
-  .icon-collect{
+
+  .icon-collect {
     font-size: 15px;
   }
-  .icon-cancel-collect{
+
+  .icon-cancel-collect {
     color: #ff0f51;
     font-size: 15px;
   }
 
-  /*.profile-entity:hover {*/
-  /*  cursor: pointer;*/
-  /*  text-decoration: underline;*/
-  /*}*/
+  .profile-entity:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 </style>

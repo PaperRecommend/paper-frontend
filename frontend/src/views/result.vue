@@ -5,9 +5,9 @@
         <div id="overlay">
           <div id="o-content">
             <h1 class="title" @click="gotoMainpage">
-              OASIS
+              PSARS
             </h1>
-            <search @paperSearch="commonSearch" :searchContent="search_content"></search>
+            <search @paperSearch="commonSearch" :searchContent="search_content" :type="search_type"></search>
           </div>
         </div>
       </el-header>
@@ -27,7 +27,7 @@
             </div>
           </el-col>
 <!--          搜索结果条目-->
-          <el-col :span="18" id="res">
+          <el-col :span="18">
             <div class="no-result-hint" v-if="!has_result">No result!</div>
 <!--            搜索结果的条目-->
             <div class="result-card" v-loading="loading">
@@ -226,11 +226,11 @@ export default {
         .then(res=>{
             console.log(res.data);
             let collection=new Set(JSON.parse(localStorage.getItem("Collection")))
-            res.data.forEach(item=>{
+            res.data.papers.forEach(item=>{
                 item["isCollect"]=collection.has(item.id)
             })
-          this.search_result = res.data;
-          // this.search_page_number = res.data.itemCnt;
+          this.search_result = res.data.papers;
+          this.search_page_number = res.data.itemCount;
 
           this.loading = false;
 
@@ -269,8 +269,8 @@ export default {
       this.search_within_arguments = this.convertSpecialChar(this.search_within_arguments);
 
       getRequest("/api/query/paper/refine?" + this.search_within_arguments).then(res => {
-        this.search_result = res.data;
-
+        this.search_result = res.data.papers;
+        this.search_page_number = res.data.itemCount;
 
         this.loading = false;
 
@@ -292,7 +292,7 @@ export default {
           "&returnFacets=" + this.search_type +
           "&pageNum=" + this.current_page)
           .then(res => {
-            this.search_result = res.data;
+            this.search_result = res.data.papers;
             this.loading = false;
           })
       }
@@ -333,7 +333,8 @@ export default {
   font-size: 50px;
   margin: 0 0 8px 0;
   cursor: pointer;
-  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-bottom: 30px;
 }
 
 #header{
@@ -355,6 +356,7 @@ export default {
 
 .result-card {
   display: block;
+
 }
 
 .page-pagination{

@@ -98,8 +98,10 @@
     font-weight: bold;
   }
   .graph{
-    height: 100%;
+    height: 90%;
     width: 100%;
+    /*margin-bottom: 20px;*/
+    /*margin-top: -20px;*/
   }
 
   .graph-error{

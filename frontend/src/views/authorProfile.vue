@@ -57,35 +57,9 @@
           </div>
         </el-col>
 
-        <!--
-        <el-col :span="8"><div class="grid-content">
-          <graph-card :graphInfo="graphInfos[1]"></graph-card>
-        </div></el-col>
-        <el-col :span="8"><div class="grid-content">
-          <graph-card :graphInfo="graphInfos[2]"></graph-card>
-        </div></el-col>
-        -->
-      </el-row>
-      <!--
-      <el-row :gutter="15">
-        <el-col :span="8"><div class="grid-content">
-          <graph-card :graphInfo="graphInfos[3]"></graph-card>
-        </div></el-col>
-        <el-col :span="8"><div class="grid-content">
-          <graph-card :graphInfo="graphInfos[4]"></graph-card>
-        </div></el-col>
 
       </el-row>
-      <el-row :gutter="15">
 
-      </el-row>
-      <el-row :gutter="15">
-        <el-col :span="24"><div class="grid-content">
-          <top-ranking-card :topRankingContent="topRankingContent[0]"
-                            :pdfLink="true"></top-ranking-card>
-        </div></el-col>
-      </el-row>
-      -->
     </el-main>
   </el-container>
 </template>
@@ -119,10 +93,24 @@
             'pie-chart-card': PieChartCard,
             'essay-search-result-card': essaySearchResultCard,
         },
+        created(){
+            this.loading = this.$loading({
+                lock: true,
+                text: 'Loading',
+                spinner: 'el-icon-loading',
+                background: 'rgba(255,255,255, 0.7)'
+            });
+        },
 
         mounted() {
             this.id = this.$route.query.id;
+            // this.loading=true;
+
             this.getBasicInfo();
+
+
+
+
             // this.authorloading = false;
             // getTrendInfo(this.graphInfos, this.id);
             // this.getTopRankingInfo();
@@ -170,7 +158,8 @@
                     rows: [],
                 },
                 papers: [],
-                authorloading: true
+                loading:null
+
             }
         },
 
@@ -227,7 +216,9 @@
                         getPieChartData(res.data.fields, this.pieChartData)
                         // console.log(this.pieChartData)
 
-                        this.getTrendInfo(res.data.years)
+                        this.getTrendInfo(res.data.years);
+                        this.loading.close();
+
                     });
             },
 
@@ -273,7 +264,7 @@
             getTrendInfo(data) {
                 for (let year in data) {
                     this.graphInfos.chartData.rows.push({
-                        "Year": parseInt(year),
+                        "Year": year,
                         "Papers": parseInt(data[year])
                     })
                 }

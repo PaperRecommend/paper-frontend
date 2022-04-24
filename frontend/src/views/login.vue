@@ -35,7 +35,7 @@
 </template>
 
 <script>
-    import {getRequest, postNormalRequest} from "../utils/request"
+    import {getRequest, postNormalRequest,postRequest} from "../utils/request"
     import {Message} from "element-ui"
     import {setToken,getToken} from "../utils/auth";
 
@@ -121,11 +121,25 @@
                             this.$router.push("/mainpage");
                             Message.success("登录成功");
                             setToken('PAPER-BACKEND',res.data.message);
-                            getRequest("/user/uid?"+"username="+this.username).then(res=>{
 
+                            getRequest("/user/uid?"+"username="+this.username).then(res=>{
                                 setToken('UID',res.data)
 
                             })
+                            let uid=getToken('UID');
+                            getRequest("/api/recommend/lda-topic/cal_papers?uid="+uid).then(res=>{
+
+                                if(res.status==200){
+                                    console.log(res);
+                                }
+                            });
+                            postRequest("/api/recommend/paper-recommend/single-update?uid="+uid).then(res=>{
+
+                                if(res.data.success){
+                                    console.log(res.data.message);
+                                }
+                            })
+
 
                         }else{
                             Message.error("登录错误,请检查邮箱和密码");

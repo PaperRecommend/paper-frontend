@@ -4,7 +4,7 @@
     <div id="overlay">
       <div id="o-content" class="content" style="margin-top: 30px;">
         <h1 class="title" @click="gotoMainpage">
-          OASIS
+          PSARS
         </h1>
         <search @paperSearch="commonSearch" :searchContent="searchCon.con"></search>
       </div>
