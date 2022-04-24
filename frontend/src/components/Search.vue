@@ -92,7 +92,7 @@ export default{
       border: none;
   }
   .el-input-group__append, .el-input-group__prepend{
-      padding: 0 4%;
+      padding: 0,4%;
   }
     .input-with-select .el-input__inner::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
         color: black;
