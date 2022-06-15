@@ -1,7 +1,7 @@
 <template>
   <el-container class="main">
     <el-header class="oasis-header">
-      <Header></Header>
+      <HeaderBar></HeaderBar>
     </el-header>
     <el-main>
       <el-row :gutter="15">
@@ -23,34 +23,19 @@
           <graph-card :graphInfo="graphInfos[2]"></graph-card>
         </div></el-col>
       </el-row>
-      <el-row :gutter="15">
-        <el-col :span="8"><div class="grid-content">
-          <graph-card :graphInfo="graphInfos[3]"></graph-card>
-        </div></el-col>
-        <el-col :span="8"><div class="grid-content">
-          <graph-card :graphInfo="graphInfos[4]"></graph-card>
-        </div></el-col>
-        <el-col :span="8"><div class="grid-content">
-          <pie-chart-card :chartData="pieChartData"></pie-chart-card>
-        </div></el-col>
-      </el-row>
-      <el-row :gutter="15">
-        <el-col :span="24"><div class="grid-content">
-          <top-ranking-card :topRankingContent="topRankingContent[0]"
-                            :pdfLink="true"></top-ranking-card>
-        </div></el-col>
-      </el-row>
+
     </el-main>
   </el-container>
 </template>
 
 <script>
-  import Header from "../components/Header";
+  // import Header from "../components/Header";
   import BasicIntroCard from "../components/BasicIntroCard.vue";
   import BasicStatisticCard from "../components/BasicStatisticCard.vue";
   import GraphCard from "../components/GraphCard.vue";
   import TopRankingCard from "../components/TopRankingCard.vue";
-  import PieChartCard from "../components/PieChartCard"
+  import PieChartCard from "../components/PieChartCard";
+  import HeaderBar from "../components/HeaderBar";
 
   import {getRequest} from "../utils/request"
   import {getTrendInfo, getPapersForProfile,getPieChartData} from "../utils/profileInfo"
@@ -62,7 +47,7 @@
       GraphCard,
       BasicStatisticCard,
       BasicIntroCard,
-      Header,
+        HeaderBar,
       'basic-intro-card': BasicIntroCard,
       'Basic-statistic-card': BasicStatisticCard,
       'graph-card': GraphCard,

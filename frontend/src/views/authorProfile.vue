@@ -192,7 +192,7 @@
                             },
                             {
                                 icon: this.activenessIcon,
-                                type: "Heat",
+                                type: "Activity",
                                 value: res.data.heat
                             },
                             {
@@ -244,6 +244,7 @@
                     let node = {
                         id: item.id,
                         name: item.name,
+                        count: item.count,
                         symbolSize: 13
                     }
                     nodes.push(node)
@@ -253,7 +254,7 @@
                         value: item.count
                     }
                     links.push(link)
-                })
+                  })
                 nodes[nodes.findIndex(n => n.id == centerId)].symbolSize = 16
                 this.nodeInfo.links = links;
                 this.nodeInfo.nodes = nodes;

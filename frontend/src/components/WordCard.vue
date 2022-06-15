@@ -11,6 +11,9 @@
         :extend="wordExtend">
       </ve-wordcloud>
     </div>
+<!--    <el-col :span="8"><div class="grid-content">-->
+<!--      <WordCard :data="wordData"></WordCard>-->
+<!--    </div></el-col>-->
   </div>
 </template>
 

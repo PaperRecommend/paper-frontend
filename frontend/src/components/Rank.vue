@@ -13,8 +13,8 @@
         <div class="card-content">
           <div class="card-item" v-for="(item,index) in topRanking[tabItem]">
             <a class="card-link" @click="jumpToProfile(tabItem,item.id)">{{index+1}}.&nbsp;&nbsp;<span
-              class="item-name" :class="tabIndex==2?'':'item-name-2'">{{tabIndex==2?item.raw:item.name}}</span></a>
-            <span class="item-heat">heat: {{item.heat}}</span>
+              class="item-name" >{{tabIndex==2?item.raw:item.name}}</span></a>
+            <span class="item-heat">Activity: {{item.heat}}</span>
           </div>
 
         </div>
@@ -154,7 +154,6 @@
 
   .card-item {
     height: 10%;
-
     /*background-color: #6dd070;*/
     width: 100%;
     /*border-bottom: 0.5px solid white;*/
@@ -186,8 +185,13 @@
     text-align: left;
   }
 
+  .item-name:hover{
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
   .item-heat {
-    width: 25%;
+    width: 31%;
     height: 100%;
     display: flex;
     align-items: center;

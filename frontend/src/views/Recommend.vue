@@ -26,15 +26,6 @@
           >
           </essay-search-result-card>
         </div>
-        <!--            分页器-->
-        <!--        <div class="page-pagination"-->
-        <!--             v-if="collections != null && collections.length > 0">-->
-        <!--          <my-pagination :search_page_number="search_page_number"-->
-        <!--                         :current_page="current_page"-->
-        <!--                         :page_size="page_size"-->
-        <!--          >-->
-        <!--          </my-pagination>-->
-        <!--        </div>-->
       </el-col>
 
       <el-col :span="2">

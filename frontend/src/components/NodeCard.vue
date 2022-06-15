@@ -16,6 +16,7 @@
     require('echarts/lib/chart/graph');
     require('echarts/lib/component/tooltip');
     require('echarts/lib/component/title');
+    import {jump2Profile} from "../utils/profileInfo";
     export default {
         name: "node-card",
         props: {
@@ -128,6 +129,17 @@
         },
         mounted() {
             this.init()
+            let _this=this;
+            this.myChart.on('click', function (params) {
+                console.log(params);
+                if(params.dataType&&params.dataType=="node"){
+                    let id=params.data.authorId;
+                    if(id!=_this.$route.query.id){
+                        _this.jumpToProfile('author',id);
+                    }
+
+                }
+            });
         },
         methods: {
             init() {
@@ -140,6 +152,7 @@
 
                 for (const [i, node] of this.nodes.entries()) {
                     let n = {
+                        authorId: node.id,
                         name: node.name,
                         value: 2,
                         label: {
@@ -176,7 +189,10 @@
             },
             normal() {
                 this.cardClass = "normal-card"
-            }
+            },
+            jumpToProfile(type, id) {
+                jump2Profile(this.$router, type, id);
+            },
         }
     }
 </script>

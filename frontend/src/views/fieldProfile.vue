@@ -44,6 +44,10 @@
           <div class="grid-content">
             <graph-card :graphInfo="graphInfos"></graph-card>
           </div>
+
+          <div class="grid-content" style="margin-top: 25px;">
+            <rank-card :rankData="rankData"></rank-card>
+          </div>
         </el-col>
 
         <!--
@@ -110,10 +114,12 @@
     import {getTrendInfo, getPapersForProfile} from "../utils/profileInfo"
     import essaySearchResultCard from "../components/EssaySearchResultCard"
     import HeaderBar from "../components/HeaderBar";
+    import RankCard from "../components/RankCard";
 
     export default {
         name: "fieldProfile",
         components: {
+            RankCard,
             HeaderBar,
             TopRankingCard,
             GraphCard,
@@ -181,7 +187,8 @@
 
 
 
-                wordData: []
+                wordData: [],
+                rankData: []
             }
         },
 
@@ -189,6 +196,7 @@
             getBasicInfo() {
                 getRequest("/api/field/detail?id=" + this.id)
                     .then(res => {
+                        console.log(res.data);
                         this.basicIntro.name = res.data.name;
 
                         this.basicStatistic.push(
@@ -205,11 +213,12 @@
                             },
                             {
                                 icon: this.activenessIcon,
-                                type: "Heat",
+                                type: "Activity",
                                 value: res.data.heat
                             },
 
                         );
+                        this.rankData=res.data.authorDetail;
                         this.papers=res.data.paperDetail;
                         this.getTrendInfo(res.data.years)
                     });

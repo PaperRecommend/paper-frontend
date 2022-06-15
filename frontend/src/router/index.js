@@ -4,20 +4,18 @@ import {Message} from 'element-ui'
 
 import MainPage from '@/views/mainpage'
 import SearchRes from '@/views/result'
-import Ranking from '@/views/ranking'
-import Admin from "@/views/admin"
 
 import Sort from "@/views/sort"
 
 import AuthorProfile from "@/views/authorProfile"
-import AffiliationProfile from "@/views/affiliationProfile"
+
 import ConferenceProfile from "@/views/conferenceProfile"
 import FieldProfile from "@/views/fieldProfile"
 import Login from "@/views/login"
 import Register from "@/views/register"
 import Collection from "@/views/Collection"
 
-import Trend from "@/views/trend"
+// import Trend from "@/views/trend"
 
 
 import {getRequest} from "../utils/request"
@@ -69,16 +67,6 @@ const router= new Router({
       component: SearchRes,
     },
     {
-      path: '/ranking',
-      name: "Ranking",
-      component: Ranking,
-    },
-    {
-      path: '/admin',
-      name: "Admin",
-      component: Admin
-    },
-    {
       path: "/sort",
       name: "Sort",
       component: Sort
@@ -89,11 +77,6 @@ const router= new Router({
       component: AuthorProfile
     },
     {
-      path: "/affiliation-profile",
-      name: "AffiliationProfile",
-      component: AffiliationProfile
-    },
-    {
       path: "/conference-profile",
       name: "ConferenceProfile",
       component: ConferenceProfile
@@ -102,11 +85,6 @@ const router= new Router({
       path: "/field-profile",
       name: "FieldProfile",
       component: FieldProfile
-    },
-    {
-      path: "/trend",
-      name: "Trend",
-      component: Trend
     },
     {
       path: "/collection",

@@ -78,10 +78,10 @@
 
   /* .card {
     /* background-color: azure;
-    opacity: 0.5; 
+    opacity: 0.5;
     background: rgba(255, 255, 255, 0.4);
     border-radius: 4px;
-    /* color: #4e4376; 
+    /* color: #4e4376;
     color: #eeeeee;
     height: 400px;
     overflow: hidden;
@@ -144,8 +144,8 @@
     width: 50%;
     text-align: left;
     float: left;
-    white-space: nowrap;  
-    text-overflow:ellipsis; 
+    white-space: nowrap;
+    text-overflow:ellipsis;
     overflow:hidden;
   }
 
